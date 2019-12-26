@@ -16,6 +16,7 @@ csv_visa = 'cibc-visa.csv'
 csv_chq = 'cibc-chq.csv'
 csv_sav = 'cibc-sav.csv'
 output_file = 'cibc_master.xlsx'
+output_sheet_title = 'banking'
 orange = PatternFill(start_color='ffcaa1',end_color='ffcaa1',fill_type='solid')
 purple = PatternFill(start_color='dbb5ff',end_color='dbb5ff',fill_type='solid')
 red1   = PatternFill(start_color='ffa1a1',end_color='ffa1a1',fill_type='solid')
@@ -27,7 +28,7 @@ green2 = PatternFill(start_color='00ff80',end_color='00ff80',fill_type='solid')
 green3 = PatternFill(start_color='34fa4f',end_color='34fa4f',fill_type='solid')
 blue   = PatternFill(start_color='abf2ff',end_color='abf2ff',fill_type='solid')
 white  = PatternFill(start_color='ffffff',end_color='ffffff',fill_type='solid')
-
+black  = PatternFill(start_color='000000',end_color='000000',fill_type='solid')
 
 # converts the downloaded csv files (cibc-chq, cibc-sav & cibc-visa) to xlsx format (one single file)
 # and writes VISA/SAV/CHQ to column G depending on the input file the row is copied from
@@ -66,16 +67,16 @@ def create_master_xlsx(output_file):
 		i += 1
 	print ("	{} converted and transaction type appended (to column G)".format(csv_sav))
 
-	ws.title = 'banking'
+	ws.title = output_sheet_title
 	wb.save(output_file)
 
 # fills in cell color depending on it's value and the list it belongs to
-def cell_color(input_file):
+def cell_color(input_file, worksheet):
 	print ("\n2) Color coding each cell as per classification\n")
 	no_match = 0
 	no_match_list = []
 	wb = load_workbook(input_file)
-	ws = wb["banking"]
+	ws = wb[worksheet]
 	colB = ws['B']
 	for cell_des in colB:
 		cell = cell_des.value
@@ -143,12 +144,27 @@ def format_sheet(input_file, worksheet):
 		cell_des.alignment = Alignment(horizontal="center", vertical="center")
 	wb.save(input_file)
 
+
+def duplicate_entry(input_file, worksheet):
+	print ("\n5) Highlighting internet transfers from CHQ to SAV\n")
+	wb = load_workbook(input_file)
+	ws = wb[worksheet]
+	i = 1
+	j = 2
+	last_row = ws.max_row
+	while i <= last_row:
+		if ws.cell(row=i, column=2).value == ws.cell(row=j, column=2).value:
+			ws.cell(row=i, column=2).fill = black
+			ws.cell(row=j, column=2).fill = black
+		i+=1
+		j+=1
+	wb.save(input_file)
+
 def main():
-	create_master_xlsx(output_file)
-	cell_color(output_file)
-	format_sheet(output_file, 'banking')
-
-
+	#create_master_xlsx(output_file)
+	#cell_color(output_file, output_sheet_title)
+	#format_sheet(output_file, output_sheet_title)
+	duplicate_entry(output_file, output_sheet_title)
 
 if __name__== "__main__":
   main()
