@@ -15,11 +15,12 @@ import categories
 csv_visa = 'cibc-visa.csv'
 csv_chq = 'cibc-chq.csv'
 csv_sav = 'cibc-sav.csv'
+output_file = 'cibc_master.xlsx'
 orange = PatternFill(start_color='ffcaa1',end_color='ffcaa1',fill_type='solid')
 purple = PatternFill(start_color='dbb5ff',end_color='dbb5ff',fill_type='solid')
 red1   = PatternFill(start_color='ffa1a1',end_color='ffa1a1',fill_type='solid')
 red2   = PatternFill(start_color='e06565',end_color='e06565',fill_type='solid')
-red3   = PatternFill(start_color='ff2e2e',end_color='ff2e2e',fill_type='solid')	
+red3   = PatternFill(start_color='ff2e2e',end_color='ff2e2e',fill_type='solid')
 yellow = PatternFill(start_color='fffa99',end_color='fffa99',fill_type='solid')
 green1 = PatternFill(start_color='c1ffab',end_color='c1ffab',fill_type='solid')
 green2 = PatternFill(start_color='00ff80',end_color='00ff80',fill_type='solid')
@@ -28,19 +29,45 @@ blue   = PatternFill(start_color='abf2ff',end_color='abf2ff',fill_type='solid')
 white  = PatternFill(start_color='ffffff',end_color='ffffff',fill_type='solid')
 
 
-# converts the downloaded csv file to xlsx format
-def csv_to_xlsx(input_file):
-	print ("\n1) Converting dowloaded CSV file to XLSX\n")
-	output_file = input_file.replace('csv','xlsx')			#create output name string
+# converts the downloaded csv files (cibc-chq, cibc-sav & cibc-visa) to xlsx format (one single file)
+# and writes VISA/SAV/CHQ to column G depending on the input file the row is copied from
+def create_master_xlsx(output_file):
+	print ("\n1) Converting CSV files to XLSX and appending transacation type\n")
 	wb = Workbook()
 	ws = wb.active
-	with open(input_file, 'r') as f:						#copy csv contents to xlsx 
+
+	with open(csv_visa, 'r') as f:
 	    for row in csv.reader(f):
 	        ws.append(row)
-	
+	last_visa_row = ws.max_row
+	i = 1
+	while i <= last_visa_row:
+		ws.cell(row=i, column=7).value = 'VISA'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_visa))
+
+	with open(csv_chq, 'r') as f:
+	    for row in csv.reader(f):
+	        ws.append(row)
+	last_chq_row = ws.max_row
+	i = last_visa_row + 1
+	while i <= last_chq_row:
+		ws.cell(row=i, column=7).value = 'CHQ'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_chq))
+
+	with open(csv_sav, 'r') as f:
+	    for row in csv.reader(f):
+	        ws.append(row)
+	last_sav_row = ws.max_row
+	i = last_chq_row + 1
+	while i <= last_sav_row:
+		ws.cell(row=i, column=7).value = 'SAV'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_sav))
+
 	ws.title = 'banking'
 	wb.save(output_file)
-	return output_file
 
 # fills in cell color depending on it's value and the list it belongs to
 def cell_color(input_file):
@@ -58,7 +85,7 @@ def cell_color(input_file):
 
 		elif any(word in cell for word in categories.resteraunts):
 			cell_des.fill = red2
-			continue 
+			continue
 
 		elif any(word in cell for word in categories.entertain):
 			cell_des.fill = red3
@@ -104,7 +131,7 @@ def format_sheet(input_file, worksheet):
 	print ("\n4) Formating worksheet: {}\n".format(worksheet))
 	ws.column_dimensions['A'].width = 10
 	ws.column_dimensions['B'].width = 42
-	
+
 	colC = ws['C']
 	colD = ws['D']
 	colG = ws['G']
@@ -116,62 +143,10 @@ def format_sheet(input_file, worksheet):
 		cell_des.alignment = Alignment(horizontal="center", vertical="center")
 	wb.save(input_file)
 
-# converts the downloaded csv files (cibc-chq, cibc-sav & cibc-visa) to xlsx format (one single file)
-# and writes VISA/SAV/CHQ to column G depending on the input file the row is copied from
-def create_master_xlsx(output_file):
-	wb = Workbook()
-	ws = wb.active
-	
-	with open('cibc-visa.csv', 'r') as f:						 
-	    for row in csv.reader(f):
-	        ws.append(row)
-	last_visa_row = ws.max_row
-	i = 1
-	while i <= last_visa_row:
-		ws.cell(row=i, column=7).value = 'VISA'
-		i += 1
-
-	with open('cibc-chq.csv', 'r') as f:						 
-	    for row in csv.reader(f):
-	        ws.append(row)
-	last_chq_row = ws.max_row
-	i = last_visa_row + 1
-	while i <= last_chq_row:
-		ws.cell(row=i, column=7).value = 'CHQ'
-		i += 1
-
-	with open('cibc-sav.csv', 'r') as f:						 
-	    for row in csv.reader(f):
-	        ws.append(row)
-	last_sav_row = ws.max_row
-	i = last_chq_row + 1
-	while i <= last_sav_row:
-		ws.cell(row=i, column=7).value = 'SAV'
-		i += 1
-	
-	ws.title = 'banking'
-	wb.save(output_file)
-	
-
 def main():
-	# print ("\n############ Input file: {} ############".format(csv_visa))
-	# xlsx_file = csv_to_xlsx(csv_visa)
-	# cell_color(xlsx_file)
-	# append_trans(xlsx_file)
-	# format_sheet(xlsx_file, "banking")
-
-	# print ("\n############ Input file: {} ############".format(csv_chq))
-	# xlsx_file = csv_to_xlsx(csv_chq)
-	# cell_color(xlsx_file)
-	# append_trans(xlsx_file)
-	# format_sheet(xlsx_file, "banking")
-
-	# print ("\n############ Input file: {} ############".format(csv_sav))
-	# xlsx_file = csv_to_xlsx(csv_sav)
-	# cell_color(xlsx_file)
-	# append_trans(xlsx_file)
-	# format_sheet(xlsx_file, "banking")
-	create_master_xlsx('cibc_master.xlsx')
+	create_master_xlsx(output_file)
+	cell_color(output_file)
+	format_sheet(output_file, 'banking')
 
 
 
