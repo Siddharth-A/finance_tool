@@ -22,6 +22,7 @@ resteraunts = [	"7 ELEVEN",
 				"EASTERN SENSE",
 				"EATON RUBY THAI",
 				"FIVE GUYS",
+				"GATEWAY NEWSSTAND",
 				"GATEWAY NEWSSTANDS",
 				"GRILL",
 				"GURU LUKSHMI",
@@ -80,6 +81,7 @@ transport 	= [ "AIR-SERV",
 # orange
 personal    = [ "AMAZON",
 				"AMZN",
+				"ASTRA",
 				"Banggood.com",
 				"CDN TIRE",
 				"DENTAL",
@@ -102,6 +104,7 @@ personal    = [ "AMAZON",
 				"ROGERS",
 				"RYERSON",
 				"SHOPPERS",
+				"SHOPPER'S",
 				"THE SOURCE",
 		      ]
 
@@ -120,14 +123,13 @@ retail      = [ "DR MARTENS",
 		      ]
 # green1
 credit      = [ "THANK YOU",
-			    "CASH BACK",
 		      ]
 
 # green2
 pay         = [ "ATI TECHNOLOGIE",
 			    "CASH BACK",
 			    "MANULIFE",
-
+			    "Branch Transaction INTEREST",
 		      ]
 # green3
 savings     = [ "PREAUTHORIZED DEBIT CIBC-DISATF",
