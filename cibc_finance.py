@@ -15,6 +15,7 @@ import categories
 csv_visa = 'cibc-visa.csv'
 csv_chq = 'cibc-chq.csv'
 csv_sav = 'cibc-sav.csv'
+csv_roger = 'rogers.csv'
 output_file = 'cibc_master.xlsx'
 output_sheet_title = 'banking'
 orange = PatternFill(start_color='ffcaa1',end_color='ffcaa1',fill_type='solid')
@@ -66,6 +67,16 @@ def create_master_xlsx(output_file):
 		ws.cell(row=i, column=7).value = 'SAV'
 		i += 1
 	print ("	{} converted and transaction type appended (to column G)".format(csv_sav))
+
+	with open(csv_roger, 'r') as f:
+	    for row in csv.reader(f):
+	        ws.append(row)
+	last_sav_row = ws.max_row
+	i = last_chq_row + 1
+	while i <= last_sav_row:
+		ws.cell(row=i, column=7).value = 'ROGER'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_roger))
 
 	ws.title = output_sheet_title
 	wb.save(output_file)
@@ -161,9 +172,9 @@ def duplicate_entry(input_file, worksheet):
 	wb.save(input_file)
 
 def main():
-	#create_master_xlsx(output_file)
-	#cell_color(output_file, output_sheet_title)
-	#format_sheet(output_file, output_sheet_title)
+	create_master_xlsx(output_file)
+	cell_color(output_file, output_sheet_title)
+	format_sheet(output_file, output_sheet_title)
 	duplicate_entry(output_file, output_sheet_title)
 
 if __name__== "__main__":
