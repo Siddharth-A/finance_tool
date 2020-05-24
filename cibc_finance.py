@@ -71,9 +71,9 @@ def create_master_xlsx(output_file):
 	with open(csv_roger, 'r') as f:
 	    for row in csv.reader(f):
 	        ws.append(row)
-	last_sav_row = ws.max_row
-	i = last_chq_row + 1
-	while i <= last_sav_row:
+	last_roger_row = ws.max_row
+	i = last_sav_row + 1
+	while i <= last_roger_row:
 		ws.cell(row=i, column=7).value = 'ROGER'
 		i += 1
 	print ("	{} converted and transaction type appended (to column G)".format(csv_roger))
