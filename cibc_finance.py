@@ -92,11 +92,11 @@ def cell_color(input_file, worksheet):
 	for cell_des in colB:
 		cell = cell_des.value
 		if any(word in cell for word in categories.grocery):
-			cell_des.fill = red1
+			cell_des.fill = red3
 			continue
 
 		elif any(word in cell for word in categories.resteraunts):
-			cell_des.fill = red2
+			cell_des.fill = red3
 			continue
 
 		elif any(word in cell for word in categories.entertain):
@@ -104,7 +104,7 @@ def cell_color(input_file, worksheet):
 			continue
 
 		elif any(word in cell for word in categories.transport):
-			cell_des.fill = purple
+			cell_des.fill = orange
 			continue
 
 		elif any(word in cell for word in categories.personal):
@@ -112,11 +112,11 @@ def cell_color(input_file, worksheet):
 			continue
 
 		elif any(word in cell for word in categories.retail):
-			cell_des.fill = blue
+			cell_des.fill = orange
 			continue
 
 		elif any(word in cell for word in categories.credit):
-			cell_des.fill = green1
+			cell_des.fill = green2
 			continue
 
 		elif any(word in cell for word in categories.pay):
@@ -124,7 +124,7 @@ def cell_color(input_file, worksheet):
 			continue
 
 		elif any(word in cell for word in categories.savings):
-			cell_des.fill = green3
+			cell_des.fill = green2
 			continue
 
 		else:

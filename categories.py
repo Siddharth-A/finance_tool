@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-# red1
+# red3
 grocery     = [ "FARZIN'S NO FRI",
 				"FORTINOS",
 			    "FOOD BASICS",
@@ -9,8 +9,9 @@ grocery     = [ "FARZIN'S NO FRI",
 			    "NOFRILLS",
 		      ]
 
-# red2
-resteraunts = [	"7 ELEVEN",
+# red3
+resteraunts = [	"520 SUSHI",
+				"7 ELEVEN",
 				"ALI BABAS",
 				"ALIMAS",
 				"BASKIN ROBBINS",
@@ -32,6 +33,7 @@ resteraunts = [	"7 ELEVEN",
 				"KERNELS POPCORN",
 				"KFC",
 				"KIMCHI KOREA HOUSE",
+				"KOGANEI",
 				"KWALITY",
 				"LAZEEZ",
 				"MANDI AFANDI",
@@ -63,9 +65,10 @@ entertain   = [ "BEER",
 				"MAZAJ",
 				"ROLLERPLEX",
 				"SHISHA",
+				"SINDBAD",
 		      ]
 
-# purple
+# orange
 transport 	= [ "AIR-SERV",
 				"CARS R US",
 				"COSTCO",
@@ -85,8 +88,10 @@ transport 	= [ "AIR-SERV",
 # orange
 personal    = [ "AMAZON",
 				"AMZN",
+				"Amazon",
 				"ASTRA",
 				"Banggood.com",
+				"BELL",
 				"CDN TIRE",
 				"DENTAL",
 				"DOLLAR",
@@ -112,7 +117,7 @@ personal    = [ "AMAZON",
 				"THE SOURCE",
 		      ]
 
-# blue
+# orange
 retail      = [ "DR MARTENS",
 				"EMPIRE STREET",
 				"H&M",
@@ -125,8 +130,9 @@ retail      = [ "DR MARTENS",
 				"WAL-MART",
 
 		      ]
-# green1
+# green2
 credit      = [ "THANK YOU",
+				"CashBack",
 		      ]
 
 # green2
@@ -135,6 +141,6 @@ pay         = [ "ATI TECHNOLOGIE",
 			    "MANULIFE",
 			    "Branch Transaction INTEREST",
 		      ]
-# green3
+# green2
 savings     = [ "PREAUTHORIZED DEBIT CIBC-DISATF",
 		      ]
