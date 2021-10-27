@@ -16,6 +16,8 @@ csv_visa = 'cibc-visa.csv'
 csv_chq = 'cibc-chq.csv'
 csv_sav = 'cibc-sav.csv'
 csv_roger = 'rogers.csv'
+csv_bmo_mc = 'bmo-mc.csv'
+csv_bmo = 'bmo.csv'
 output_file = 'cibc_master.xlsx'
 output_sheet_title = 'banking'
 orange = PatternFill(start_color='ffcaa1',end_color='ffcaa1',fill_type='solid')
@@ -75,6 +77,26 @@ def create_master_xlsx(output_file):
 	i = last_sav_row + 1
 	while i <= last_roger_row:
 		ws.cell(row=i, column=7).value = 'ROGER'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_roger))
+
+	with open(csv_bmo_mc, 'r') as f:
+	    for row in csv.reader(f):
+	        ws.append(row)
+	last_bmo_row = ws.max_row
+	i = last_sav_row + 1
+	while i <= last_bmo_row:
+		ws.cell(row=i, column=7).value = 'BMO MC'
+		i += 1
+	print ("	{} converted and transaction type appended (to column G)".format(csv_roger))
+
+	with open(csv_bmo, 'r') as f:
+	    for row in csv.reader(f):
+	        ws.append(row)
+	last_bmoc_row = ws.max_row
+	i = last_sav_row + 1
+	while i <= last_bmoc_row:
+		ws.cell(row=i, column=7).value = 'BMO CHQ'
 		i += 1
 	print ("	{} converted and transaction type appended (to column G)".format(csv_roger))
 
