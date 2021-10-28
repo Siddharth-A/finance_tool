@@ -7,6 +7,8 @@ grocery     = [ "FARZIN'S NO FRI",
 			    "FOOD BASICS",
 			    "MY PROTEIN",
 			    "NOFRILLS",
+			    "GORE MEAT",
+			    "NO FRILLS",
 		      ]
 
 # red3
@@ -19,6 +21,7 @@ resteraunts = [	"520 SUSHI",
 				"BURGER",
 				"BURRITO",
 				"CHOCOLATE",
+				"CHATIME",
 				"DAIRY QUEEN",
 				"EASTERN SENSE",
 				"EATON RUBY THAI",
@@ -45,6 +48,7 @@ resteraunts = [	"520 SUSHI",
 				"OSMOW",
 				"PIZZA",
 				"POUTINERIE",
+				"POPEYES",
 				"RAMYUN",
 				"RESTAURANT",
 				"RESTURANT",
@@ -55,7 +59,11 @@ resteraunts = [	"520 SUSHI",
 				"THAI 5",
 				"TIM HORTONS",
 				"VILLAGE OF INDIA",
+				"WENDY'S",
 				"WING",
+				"SWEET PALACE",
+				"MENCHIE",
+				"CHINA PALACE",
 		  	   ]
 
 # red3
@@ -66,6 +74,8 @@ entertain   = [ "BEER",
 				"ROLLERPLEX",
 				"SHISHA",
 				"SINDBAD",
+				"AIRBNB",
+				"CHAPTERS",
 		      ]
 
 # orange
@@ -128,7 +138,12 @@ retail      = [ "DR MARTENS",
 				"TIP TOP",
 				"UNIQLO",
 				"WAL-MART",
-
+				"SHEIN",
+				"ALDO",
+				"CHAMPS",
+				"VAN HEUSEN",
+				"SEPHORA",
+				"BLUENOTES",
 		      ]
 # green2
 credit      = [ "THANK YOU",
